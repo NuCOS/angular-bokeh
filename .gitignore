@@ -1,0 +1,87 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# python
+*.pyc
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.bak
+*$py.class
+
+# angular / compiled output
+node_modules/
+dist/
+doc/generated
+tmp/
+client/package-lock.json
+
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+data/ldm_db
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+
+# IDE - VSCode
+# We use workspace settings for the entire team
+!.vscode/
+!.vscode/settings.json
+.vscode/tasks.json
+.vscode/extensions.json
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage/*
+/libpeerconnection.log
+npm-debug.log
+debug.log
+testem.log
+/typings
+
+# e2e
+/e2e/*.js
+/e2e/*.map
+
+# mergetool meld #
+##################
+
+*.py.orig
+*.orig
