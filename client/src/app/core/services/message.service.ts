@@ -1,23 +1,10 @@
-/* MessageService
-     this singleton manages the incoming messages from websocket connection to python server
-     - connector types can be registered to be updated whenever a message with equal name is coming in
-       the exact way of update is defined in the connectors child classes (via set and change methods)
-     - after the update of the data of the connectors an update stream is notified
-     - for views it is mandatory to listen on the update stream to trigger the update of internal data
-     - the messages contains always a name, args and an action
-     - this service is also responsible for sending messages to python via method: sendMsg
-     - the constructor depends on two external services (WebSocketService and UpdateService), it is never called explicitely
-*/
 import { Debug } from './debug';
-import { Injectable, OnInit } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { WebsocketService } from './websocket.service';
-import { UpdateService } from './update.service';
-import { Connector } from '../types/connector';
 import { Message } from '../types/message';
-import { Dictionary } from '../types/dictionary';
 import { share, map } from 'rxjs/operators';
-import { sha256, sha224 } from 'js-sha256';
+import { sha256 } from 'js-sha256';
 
 const URL = 'ws://127.0.0.1:9000/ws';
 
@@ -26,13 +13,13 @@ const URL = 'ws://127.0.0.1:9000/ws';
 })
 export class MessageService {
   public message: Subject<Message>;
-  public connectors = new Dictionary<Connector>();
   public log = '';
   public user = '';
   public password = '';
   public isAuthenticated = false;
+  public dataStream = new Subject<Message>();
 
-  constructor(private wsService: WebsocketService, private updateService: UpdateService) {
+  constructor(private wsService: WebsocketService) {
     console.log('create message service');
     // think of a nice and individual user name generated here
     const user = this.getRandomInt(9000) + 1000;
@@ -78,12 +65,6 @@ export class MessageService {
     } else { this.message.next(msg); }
   }
 
-  public register(con: Connector): void {
-    // to register a connector data type to be notified and updated upon incoming messages
-    if (Debug.messageService) { console.log('registered: ' + con.name); }
-    this.connectors.add(con.name, con);
-  }
-
   public hexdigest_n(input: string, n: number) {
     let i = 0;
     let pre_digest = sha256(input);
@@ -94,33 +75,16 @@ export class MessageService {
     return pre_digest;
   }
 
-  private manageMsg(msg: Message): void {
-    // notify and update all registered connectors upon incoming messages
-    // after updating data the UpdateService is notified
-    if (this.connectors.containsKey(msg.name)) {
-      const con = this.connectors.item(msg.name);
-      if (Debug.messageService) {
-        console.log('manage done for ' + msg.action + ' ' + con.name);
-      }
-      try {
-        con[msg.action](msg);
-        con.isFilled = true;
-      }
-      catch (err) {
-        console.log('message action not available: ' + msg.action + ' ' + msg.name);
-      }
-    } else {
-      if (Debug.messageService && msg.name !== 'Log') {
-        console.log('not found in connectors ' + msg.name);
-      }
-    }
+  public awaitMessage() {
+    return this.dataStream;
+  }
 
+  private manageMsg(msg: Message): void {
     if (msg.name === 'Log') {
       if (this.log.length > 1500) { this.log = this.log.slice(msg.args.length); }
       this.log += msg.args;
     }
-
-    if (msg.name === 'doAuth') {
+    else if (msg.name === 'doAuth') {
       if (msg.action === 'authenticate') {
         const id = msg.args['id'];
         const nonce = msg.args['nonce'];
@@ -140,20 +104,8 @@ export class MessageService {
           console.log('auth success');
         }
       }
+    } else {
+      this.dataStream.next(msg);
     }
-
-    // Important: must run sequencially to know the update time exactly
-    if (msg.args.hasOwnProperty('directive')) {
-      this.update(msg.name + ' ' + msg.args.directive);
-    }
-    else if (msg['directive'] !== undefined) {
-      this.update(msg.name + ' ' + msg.directive);
-    } else { this.update(msg.name); }
   }
-
-  public update(name: string): void {
-    this.updateService.push(name);
-  }
-
-
 } // end class MessageService

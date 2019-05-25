@@ -3,7 +3,7 @@ export interface Message {
 
     name: string;
     args: any;
-    action: string;
+    action?: string;
     directive?: string;
     user?: string;
 

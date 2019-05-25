@@ -31,14 +31,13 @@ class PythonToView(Junction):
     async def connect(self, *args, user=None):
         print("TEST", user, args)
 
-    async def addChart(self, id_, user):
+    async def addChart(self, id_, callbackId, user):
         """
         Example for adding a bokeh chart from backend
 
         """
         chartItem = self.chartProvider.chartExample()
         print("try to add chart for dom-id %s" % id_)
-        context = {"name": "BokehService",
-                   "args": {"item": chartItem, "id": id_},
-                   "action": "plot"}
+        context = {"name": callbackId,
+                   "args": {"item": chartItem, "id": id_}}
         await self.send_event(json.dumps(context), user=user)
