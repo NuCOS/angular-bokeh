@@ -1,9 +1,12 @@
 # Angular & Bokeh
 > A small example on connecting bokeh with Angular and send data from a python backend.
 
-We recently had the problem to display a chart figure of quality in an app or website, but additionally we want to be able to send update events from the python back-end.
+objectives that are solved here:
 
-A bokeh-chart component might not always be  the optimal solution, but even though - we would like to share with you - what we found is a nice minimal example and a demonstrator:
+* display a chart figure in an app or website, 
+* be able to send update events from the python back-end.
+
+A bokeh-chart component might not always be  the optimal solution, but we found this is a nice minimal example and a demonstrator:
 
     <bokeh-chart></bokeh-chart>
 
