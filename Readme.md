@@ -63,6 +63,10 @@ in your browser you should see the app being served to:
 http://localhost:9000/
 ```
 
+## Wiki
+
+[Angular & Bokeh Wiki](../../wiki)
+
 ## Meta
 
 Twitter – [@eckjoh2](https://twitter.com/eckjoh2) – contact@nucos.de
