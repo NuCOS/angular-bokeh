@@ -80,3 +80,38 @@ Twitter – [@eckjoh2](https://twitter.com/eckjoh2) – contact@nucos.de
 3. Commit your changes (`git commit -am 'Add some fooBar'`)
 4. Push to the branch (`git push origin feature/fooBar`)
 5. Create a new Pull Request
+
+### Keep your fork up-to-date
+
+In your local working copy of your forked repository, you should add the original GitHub repository to the "remote" branches. ("remotes" are like nicknames for the URLs of repositories - origin is the default one, for example.) Then you can fetch all the branches from that upstream repository, and rebase your work to continue working on the upstream version. This can be done with the following sequence of commands:
+
+1. Add the remote, call it e.g.: "upstream":
+
+```
+git remote add upstream https://github.com/whoever/whatever.git
+```
+
+2. Fetch all the branches of that remote into remote-tracking branches, such as upstream/master:
+
+```
+git fetch upstream
+```
+
+3. Make sure that you're on your master branch:
+
+```
+git checkout master
+```
+4. Rewrite your master branch so that any commits of yours that aren't already in upstream/master are replayed on top of that other branch:
+
+```
+git rebase upstream/master
+```
+
+If you don't want to rewrite the history of your master branch, (for example because other people may have cloned it) then you should replace the last command with git merge upstream/master. However, for making further pull requests that are as clean as possible, it's probably better to rebase.
+
+5. If you've rebased your branch onto upstream/master you may need to force the push in order to push it to your own forked repository on GitHub. You'd do that with:
+```
+git push -f origin master
+```
+You only need to use the -f the first time after you've rebased
