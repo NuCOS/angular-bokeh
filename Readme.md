@@ -88,7 +88,7 @@ In your local working copy of your forked repository, you should add the origina
 1. Add the remote, call it e.g.: "upstream":
 
 ```
-git remote add upstream https://github.com/whoever/whatever.git
+git remote add upstream git@github.com:NuCOS/angular-bokeh.git
 ```
 
 2. Fetch all the branches of that remote into remote-tracking branches, such as upstream/master:
