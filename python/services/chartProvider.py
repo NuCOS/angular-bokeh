@@ -3,6 +3,8 @@ import numpy as np
 from bokeh.plotting import figure
 from bokeh.embed import json_item
 
+# NOTE: update to 2.3.2
+
 class ChartProvider():
     def __init__(self):
         self.phi = 0
@@ -15,7 +17,7 @@ class ChartProvider():
         y = np.sin(x + self.phi)
         # create a new plot
         p = figure()
-        p.line(x, y, legend="SIN")
+        p.line(x, y, legend_label="SIN")
         chart_item = json_item(p)
         print(time.time()-t0)
         return chart_item
