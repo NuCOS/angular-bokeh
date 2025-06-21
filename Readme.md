@@ -34,10 +34,28 @@ OS X & Linux & Windows:
 
 Install Anaconda and open a conda enabled shell:
 
+```bash
+
+After installing dependencies you can run Angular unit and end-to-end tests:
+
+```bash
+cd client
+npm test --silent
+npm run e2e --silent
 ```
+
+Python tests can be added under `python/tests` and executed with `pytest`.
+
 conda create -n angular-bokeh python=3.8 simplejson "bokeh>=3.0" aiohttp
 conda activate angular-bokeh
 pip install -r requirements.txt
+```
+
+After creating the conda environment you can install all Node and Python
+dependencies in one step by running the provided setup script:
+
+```bash
+./setup.sh
 ```
 
 This repository now targets **Bokeh 3.x** and **Angular 12**. Make sure the
