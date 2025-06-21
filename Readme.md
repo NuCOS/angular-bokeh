@@ -35,6 +35,7 @@ OS X & Linux & Windows:
 Install Anaconda and open a conda enabled shell:
 
 ```bash
+
 conda create -n angular-bokeh python=3.8 simplejson "bokeh>=3.0" aiohttp
 conda activate angular-bokeh
 pip install -r requirements.txt
