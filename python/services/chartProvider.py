@@ -3,7 +3,7 @@ import numpy as np
 from bokeh.plotting import figure
 from bokeh.embed import json_item
 
-# NOTE: update to 2.3.2
+# NOTE: updated for Bokeh 3.x
 
 class ChartProvider():
     def __init__(self):
