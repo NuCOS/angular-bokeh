@@ -35,14 +35,14 @@ OS X & Linux & Windows:
 Install Anaconda and open a conda enabled shell:
 
 ```
-conda create -n angular-bokeh python=3.8 simplejson bokeh aiohttp
+conda create -n angular-bokeh python=3.8 simplejson "bokeh>=3.0" aiohttp
 conda activate angular-bokeh
 pip install -r requirements.txt
 ```
 
-At time of writing the current bokeh version is 3.0.0. It may change. Be sure the Bokeh-JS version located in index.html fits to the bokeh version in python.
-
-Latest update to Angular 10.
+This repository now targets **Bokeh 3.x** and **Angular 12**. Make sure the
+Bokeh-JS version referenced in `client/src/index.html` matches the installed
+Python package.
 
 ## Usage
 
