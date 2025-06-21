@@ -40,7 +40,7 @@ conda activate angular-bokeh
 pip install -r requirements.txt
 ```
 
-At time of writing the current bokeh version is 2.3.2. It may change. Be sure the Bokeh-JS version located in index.html fits to the bokeh version in python. 
+At time of writing the current bokeh version is 3.0.0. It may change. Be sure the Bokeh-JS version located in index.html fits to the bokeh version in python.
 
 Latest update to Angular 10.
 
