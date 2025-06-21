@@ -61,6 +61,14 @@ $ cd ../python/
 $ python app.py
 ```
 
+The server listens on port `9000` by default and serves the Angular build from
+`../client/dist/dev`. You can override these defaults using environment
+variables or command line options:
+
+```
+$ PORT=8080 ANGULAR_DIST_PATH=/path/to/build python app.py --port 8080 --angular-path /path/to/build
+```
+
 in your browser you should see the app being served to:
 
 ```

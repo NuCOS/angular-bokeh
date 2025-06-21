@@ -1,6 +1,7 @@
 
 import os
 import getpass
+import argparse
 from aiohttp import web
 
 from services.aiohttpServer import AiohttpServer
@@ -18,14 +19,29 @@ import logging
 _root_ = os.path.realpath(os.path.dirname(__file__))
 
 debug.append(False)
-port = 9000
+
+parser = argparse.ArgumentParser(description="Angular-Bokeh server")
+parser.add_argument(
+    "--port",
+    type=int,
+    default=int(os.getenv("PORT", 9000)),
+    help="Port for the web server (env: PORT)",
+)
+parser.add_argument(
+    "--angular-path",
+    default=os.getenv("ANGULAR_DIST_PATH", os.path.join(_root_, "../client/dist/dev")),
+    help="Path to built Angular files (env: ANGULAR_DIST_PATH)",
+)
+
+args = parser.parse_args()
+port = args.port
 
 if __name__ == '__main__':
     ptv = PythonToView()
     server = AiohttpServer(ptv)
     ptv.setServer(server)
 
-    path = os.path.join(_root_, "../client/dist/dev")
+    path = os.path.abspath(args.angular_path)
     if not os.path.exists(path):
         logger.log(lvl="ERROR", msg="build the angular app first")
         exit()
