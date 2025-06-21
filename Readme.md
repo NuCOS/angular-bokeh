@@ -51,6 +51,16 @@ conda activate angular-bokeh
 pip install -r requirements.txt
 ```
 
+
+Before running the setup script make sure Node.js **16.x** is installed
+system-wide. On Debian/Ubuntu based systems you can use the NodeSource
+packages:
+
+```bash
+curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+sudo apt-get install -y nodejs
+```
+
 After creating the conda environment you can install all Node and Python
 dependencies in one step by running the provided setup script:
 
