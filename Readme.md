@@ -52,9 +52,9 @@ pip install -r requirements.txt
 ```
 
 
-Before running the setup script make sure Node.js **16.x** is installed
-system-wide. On Debian/Ubuntu based systems you can use the NodeSource
-packages:
+Angular 12 requires Node.js **16.x**. Before running the setup script make sure
+this version is installed system-wide. On Debian/Ubuntu based systems you can
+use the NodeSource packages:
 
 ```bash
 curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
@@ -67,6 +67,10 @@ dependencies in one step by running the provided setup script:
 ```bash
 ./setup.sh
 ```
+
+If you install the Node dependencies manually, run `npm install --legacy-peer-deps`
+to avoid Angular peer dependency conflicts. The provided `./setup.sh` script
+already uses this flag.
 
 This repository now targets **Bokeh 3.x** and **Angular 12**. Make sure the
 Bokeh-JS version referenced in `client/src/index.html` matches the installed
