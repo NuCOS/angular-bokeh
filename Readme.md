@@ -60,17 +60,11 @@ packages:
 
 ```bash
 curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
-```
-
-Angular 12 requires Node.js **16.x**. Before running the setup script make sure
-this version is installed system-wide. On Debian/Ubuntu based systems you can
-use the NodeSource packages:
-
-```bash
-curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
-
 sudo apt-get install -y nodejs
 ```
+
+Angular 19 requires Node.js **22.x**. Ensure your Node version matches this
+requirement before continuing.
 
 After creating the conda environment you can install all Node and Python
 dependencies in one step by running the provided setup script:
@@ -84,7 +78,7 @@ If you install the Node dependencies manually, run `npm install --legacy-peer-de
 to avoid Angular peer dependency conflicts. The provided `./setup.sh` script
 already uses this flag.
 
-This repository now targets **Bokeh 3.x** and **Angular 12**. Make sure the Bokeh-JS version referenced in `client/src/index.html` matches the installed
+This repository now targets **Bokeh 3.x** and **Angular 19**. Make sure the Bokeh-JS version referenced in `client/src/index.html` matches the installed
 Python package.
 
 ## Usage
