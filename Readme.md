@@ -46,10 +46,12 @@ npm run e2e --silent
 
 Python tests can be added under `python/tests` and executed with `pytest`.
 
+```bash
 conda create -n angular-bokeh python=3.8 simplejson "bokeh>=3.0" aiohttp
 conda activate angular-bokeh
 pip install -r requirements.txt
 ```
+
 
 
 Before running the setup script make sure Node.js **22.x** is installed
@@ -58,6 +60,15 @@ packages:
 
 ```bash
 curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
+```
+
+Angular 12 requires Node.js **16.x**. Before running the setup script make sure
+this version is installed system-wide. On Debian/Ubuntu based systems you can
+use the NodeSource packages:
+
+```bash
+curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+
 sudo apt-get install -y nodejs
 ```
 
@@ -68,8 +79,12 @@ dependencies in one step by running the provided setup script:
 ./setup.sh
 ```
 
-This repository now targets **Bokeh 3.7** and **Angular 19**. Make sure the
-Bokeh-JS version referenced in `client/src/index.html` matches the installed
+
+If you install the Node dependencies manually, run `npm install --legacy-peer-deps`
+to avoid Angular peer dependency conflicts. The provided `./setup.sh` script
+already uses this flag.
+
+This repository now targets **Bokeh 3.x** and **Angular 12**. Make sure the Bokeh-JS version referenced in `client/src/index.html` matches the installed
 Python package.
 
 ## Usage
