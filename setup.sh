@@ -1,15 +1,18 @@
 #!/bin/bash
 set -e
 
-# Ensure Node 16 is available without using nvm
+# Ensure Node 22 is available without using nvm
 if ! command -v node >/dev/null 2>&1; then
-  echo "Node.js is required but not installed. Please install Node.js 16.x and rerun this script." >&2
+  echo "Node.js is required but not installed. Please install Node.js 22.x and rerun this script." >&2
+
   exit 1
 fi
 
 NODE_MAJOR=$(node -v | cut -d. -f1 | tr -d 'v')
-if [ "$NODE_MAJOR" -ne 16 ]; then
-  echo "Node.js 16.x is required. Current version: $(node -v)" >&2
+
+if [ "$NODE_MAJOR" -ne 22 ]; then
+  echo "Node.js 22.x is required. Current version: $(node -v)" >&2
+
   exit 1
 fi
 
