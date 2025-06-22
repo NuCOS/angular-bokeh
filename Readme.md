@@ -51,6 +51,16 @@ conda activate angular-bokeh
 pip install -r requirements.txt
 ```
 
+
+Before running the setup script make sure Node.js **22.x** is installed
+system-wide. On Debian/Ubuntu based systems you can use the NodeSource
+packages:
+
+```bash
+curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
+sudo apt-get install -y nodejs
+```
+
 After creating the conda environment you can install all Node and Python
 dependencies in one step by running the provided setup script:
 
@@ -58,7 +68,7 @@ dependencies in one step by running the provided setup script:
 ./setup.sh
 ```
 
-This repository now targets **Bokeh 3.x** and **Angular 12**. Make sure the
+This repository now targets **Bokeh 3.7** and **Angular 19**. Make sure the
 Bokeh-JS version referenced in `client/src/index.html` matches the installed
 Python package.
 
@@ -99,7 +109,7 @@ http://localhost:9000/
 
 ## Meta
 
-Twitter – [@eckjoh2](https://twitter.com/eckjoh2) – contact@nucos.de
+contact@nucos.de
 
 [https://github.com/NuCOS](https://github.com/NuCOS)
 
