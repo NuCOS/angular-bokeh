@@ -34,15 +34,52 @@ OS X & Linux & Windows:
 
 Install Anaconda and open a conda enabled shell:
 
+```bash
+
+After installing dependencies you can run Angular unit and end-to-end tests:
+
+```bash
+cd client
+npm test --silent
+npm run e2e --silent
 ```
-conda create -n angular-bokeh python=3.8 simplejson bokeh aiohttp
+
+Python tests can be added under `python/tests` and executed with `pytest`.
+
+```bash
+conda create -n angular-bokeh python=3.8 simplejson "bokeh>=3.0" aiohttp
 conda activate angular-bokeh
 pip install -r requirements.txt
 ```
 
-At time of writing the current bokeh version is 2.3.2. It may change. Be sure the Bokeh-JS version located in index.html fits to the bokeh version in python. 
 
-Latest update to Angular 10.
+
+Before running the setup script make sure Node.js **22.x** is installed
+system-wide. On Debian/Ubuntu based systems you can use the NodeSource
+packages:
+
+```bash
+curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
+sudo apt-get install -y nodejs
+```
+
+Angular 19 requires Node.js **22.x**. Ensure your Node version matches this
+requirement before continuing.
+
+After creating the conda environment you can install all Node and Python
+dependencies in one step by running the provided setup script:
+
+```bash
+./setup.sh
+```
+
+
+If you install the Node dependencies manually, run `npm install --legacy-peer-deps`
+to avoid Angular peer dependency conflicts. The provided `./setup.sh` script
+already uses this flag.
+
+This repository now targets **Bokeh 3.x** and **Angular 19**. Make sure the Bokeh-JS version referenced in `client/src/index.html` matches the installed
+Python package.
 
 ## Usage
 
@@ -61,6 +98,14 @@ $ cd ../python/
 $ python app.py
 ```
 
+The server listens on port `9000` by default and serves the Angular build from
+`../client/dist/dev`. You can override these defaults using environment
+variables or command line options:
+
+```
+$ PORT=8080 ANGULAR_DIST_PATH=/path/to/build python app.py --port 8080 --angular-path /path/to/build
+```
+
 in your browser you should see the app being served to:
 
 ```
@@ -73,7 +118,7 @@ http://localhost:9000/
 
 ## Meta
 
-Twitter – [@eckjoh2](https://twitter.com/eckjoh2) – contact@nucos.de
+contact@nucos.de
 
 [https://github.com/NuCOS](https://github.com/NuCOS)
 

@@ -1,2 +1,3 @@
 nucosCR>=0.2.7
 nucosObs>=0.3.2
+bokeh>=3.0
