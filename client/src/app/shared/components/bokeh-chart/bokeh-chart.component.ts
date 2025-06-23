@@ -3,6 +3,7 @@ import { BokehService } from './../../services/bokeh.service';
 
 @Component({
   selector: 'bokeh-chart',
+  standalone: true,
   templateUrl: './bokeh-chart.component.html',
   styleUrls: ['./bokeh-chart.component.css']
 })
